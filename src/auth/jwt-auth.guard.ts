@@ -30,6 +30,7 @@ export class JwtAuthGuard implements CanActivate {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       request['user'] = payload;
     } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (err?.name === 'TokenExpiredError') {
         throw new UnauthorizedException({
           success: false,
@@ -37,6 +38,7 @@ export class JwtAuthGuard implements CanActivate {
           code: 'TOKEN_EXPIRED',
         });
       }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       if (err?.name === 'JsonWebTokenError') {
         throw new UnauthorizedException({
           success: false,
